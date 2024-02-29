@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="space_xxxsmall">1.dp</dimen>
+    <dimen name="space_xxsmall">2.dp</dimen>
+    <dimen name="space_extra_small">4.dp</dimen>
+    <dimen name="space_small">8.dp</dimen>
+    <dimen name="space_medium">16.dp</dimen>
+    <dimen name="space_large">32.dp</dimen>
+    <dimen name="space_extra_large">64.dp</dimen>
+    <dimen name="space_xx_large">128.dp</dimen>
+    <dimen name="space_xxx_large">256.dp</dimen>
+    <dimen name="space_xxxx_large">512.dp</dimen>
+</resources>

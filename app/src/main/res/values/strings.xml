@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">deloitte-android-test</string>
+    <string name="catalogue">Catalogue</string>
+    <string name="dollar_symbol">$%1$s</string>
+    <string name="item_image">item image</string>
+    <string name="product_detail">Product detail</string>
+    <string name="close_button_icon">close button icon</string>
+    <string name="in_stock">In Stock</string>
+    <string name="name">NAME</string>
+    <string name="category">CATEGORY</string>
+    <string name="amount_in_stocks">AMOUNT IN STOCKS</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <string name="wish_list">WISH LIST</string>
+</resources>
