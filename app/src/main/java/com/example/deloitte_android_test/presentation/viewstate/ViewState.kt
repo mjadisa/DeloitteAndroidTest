@@ -14,5 +14,8 @@ data class ItemViewState(
     val stock: Int = 0,
     val category: String = EMPTY_STRING,
     val oldPrice: Double = 0.0,
-    val productId: String = EMPTY_STRING
+    val productId: String = EMPTY_STRING,
+    var wishListStatus: Boolean = false,
+    var cartStatus: Boolean = false,
+    var quantity: Int = 1
 )

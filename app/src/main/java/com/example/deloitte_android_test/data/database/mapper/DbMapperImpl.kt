@@ -19,7 +19,10 @@ class DbMapperImpl @Inject constructor() : DbMapper {
                 price = price,
                 stock = stock,
                 oldPrice = oldPrice,
-                productId = productId
+                productId = productId,
+                wishListStatus = wishListStatus,
+                cartStatus = cartStatus,
+                quantity = quantity
 
             )
         }
@@ -34,9 +37,18 @@ class DbMapperImpl @Inject constructor() : DbMapper {
                 price = price ?: 0.0,
                 stock = stock ?: 0,
                 oldPrice = oldPrice ?: 0.0,
-                productId = productId
+                productId = productId,
+                wishListStatus = wishListStatus,
+                cartStatus = cartStatus,
+                quantity = quantity
 
             )
+        }
+    }
+
+    override fun mapDbItemsToDomain(dbItems: List<DbItem>): List<Item> {
+        return dbItems.map {
+            mapDbItemToDomain(it)
         }
     }
 

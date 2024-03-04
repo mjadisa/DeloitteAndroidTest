@@ -13,5 +13,8 @@ data class Item(
     val stock: Int,
     val category: String,
     val oldPrice: Double,
-    val productId: String
+    val productId: String,
+    var wishListStatus: Boolean = false,
+    var cartStatus: Boolean = false,
+    var quantity: Int = 1
 )

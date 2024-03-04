@@ -37,10 +37,26 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun cacheSelectedItem(itemViewState: ItemViewState) {
+    fun addItemToWishList(itemViewState: ItemViewState) {
+        itemViewState.wishListStatus = true
+        cacheSelectedItem(
+            itemViewState
+        )
+    }
+
+    fun addItemToCart(itemViewState: ItemViewState) {
+        itemViewState.cartStatus = true
+        itemViewState.quantity = ++itemViewState.quantity
+        cacheSelectedItem(
+            itemViewState
+        )
+    }
+
+    private fun cacheSelectedItem(itemViewState: ItemViewState) {
         viewModelScope.launch {
             cacheItemUseCase(mapperImpl.mapItemViewStateToDomain(itemViewState))
         }
     }
+
 
 }

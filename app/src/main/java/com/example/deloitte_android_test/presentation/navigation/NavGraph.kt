@@ -3,13 +3,11 @@ package com.example.deloitte_android_test.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.example.deloitte_android_test.presentation.screen.DetailsScreen
+import com.example.deloitte_android_test.presentation.screen.BasketScreen
 import com.example.deloitte_android_test.presentation.screen.MainScreen
-
+import com.example.deloitte_android_test.presentation.screen.WishListScreen
 
 
 @Composable
@@ -25,22 +23,18 @@ fun NavGraph(
     ) {
 
         composable(route = Destinations.Main.route) {
-            MainScreen { id ->
-                navController.navigate(Destinations.Details.route + "/${id}")
-            }
+            MainScreen()
+        }
+
+        composable(
+            route = Destinations.WishList.route
+        ) {
+            WishListScreen()
         }
         composable(
-            route = Destinations.Details.route + "/{id}",
-            arguments = listOf(navArgument("id") { type = NavType.StringType })
-        ) { navBackStackEntry ->
-
-            val id = navBackStackEntry.arguments?.getString("id")
-            id?.let {
-                DetailsScreen(id = it, onShowMainScreen = {
-                    navController.navigate(Destinations.Main.route)
-                })
-            }
-
+            route = Destinations.Basket.route
+        ) {
+            BasketScreen()
         }
     }
 }

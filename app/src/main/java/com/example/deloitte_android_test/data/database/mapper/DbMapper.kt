@@ -10,4 +10,5 @@ interface DbMapper {
 
     fun mapDbItemToDomain(dbItem: DbItem): Item
 
+    fun mapDbItemsToDomain(dbItems: List<DbItem>): List<Item>
 }

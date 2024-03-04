@@ -11,4 +11,5 @@ interface ViewStateMapper {
     fun mapDomainItemListResultToViewState(itemListResult: ItemListResult): ItemListViewState
     fun mapItemViewStateToDomain(itemViewState: ItemViewState): Item
 
+    fun mapDomainItemsToViewState(items: List<Item>): List<ItemViewState>
 }

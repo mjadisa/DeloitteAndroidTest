@@ -19,7 +19,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -42,8 +41,7 @@ import com.example.deloitte_android_test.utils.ShowProgressBar
 
 @Composable
 fun MainScreen(
-    viewModel: MainViewModel = hiltViewModel(),
-    onShowDetailsScreen: (Int) -> Unit
+    viewModel: MainViewModel = hiltViewModel()
 ) {
     var openSnackBar by remember { mutableStateOf(false) }
     var snackBarMessage by remember { mutableStateOf("") }
@@ -54,7 +52,21 @@ fun MainScreen(
         )
     )
 
-    var selectedProductId by remember { mutableIntStateOf(0) }
+    val showDialog = remember { mutableStateOf(false) }
+
+    var selectedProduct by remember { mutableStateOf(ItemViewState()) }
+
+    if (showDialog.value) {
+        DetailsDialog(itemViewState = selectedProduct, {
+            showDialog.value = it
+        }, {
+            viewModel.addItemToWishList(itemViewState = selectedProduct)
+
+        }, {
+            viewModel.addItemToCart(itemViewState = selectedProduct)
+
+        })
+    }
 
     LaunchedEffect(key1 = Unit) {
         viewModel.getData()
@@ -71,10 +83,8 @@ fun MainScreen(
                     ShowItemsTitle()
                     ShowItemList(it,
                         onItemClick = { itemViewState ->
-                            selectedProductId = itemViewState.productId.toInt()
-                            viewModel.cacheSelectedItem(itemViewState)
-                            onShowDetailsScreen(selectedProductId)
-
+                            selectedProduct = itemViewState
+                            showDialog.value = true
                         })
                 }
             }
@@ -100,7 +110,9 @@ fun ShowItemsTitle() {
             .background(MaterialTheme.colorScheme.surface)
     ) {
         Text(
-            text = stringResource(R.string.catalogue), Modifier.padding(dimensionResource(id = R.dimen.space_medium)), color = Color.Red,
+            text = stringResource(R.string.catalogue),
+            Modifier.padding(dimensionResource(id = R.dimen.space_medium)),
+            color = Color.Red,
             style = MaterialTheme.typography.headlineSmall
         )
 
@@ -149,7 +161,10 @@ fun ItemView(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = dimensionResource(id = R.dimen.space_medium), horizontal = dimensionResource(id = R.dimen.space_small))
+            .padding(
+                vertical = dimensionResource(id = R.dimen.space_medium),
+                horizontal = dimensionResource(id = R.dimen.space_small)
+            )
             .clickable {
                 onClick.invoke(result)
             }
@@ -168,7 +183,11 @@ fun ItemView(
         ) {
             ItemImageFromURLWithPlaceHolder(result.image)
 
-            Text(text = result.name, color = Color.Gray, modifier = Modifier.padding(dimensionResource(id = R.dimen.space_small)))
+            Text(
+                text = result.name,
+                color = Color.Gray,
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.space_small))
+            )
             Text(
                 text = stringResource(R.string.dollar_symbol, result.price),
                 fontWeight = FontWeight.Bold,

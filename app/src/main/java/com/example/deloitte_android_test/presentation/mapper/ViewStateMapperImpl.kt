@@ -21,11 +21,27 @@ class ViewStateMapperImpl @Inject constructor() : ViewStateMapper {
 
     override fun mapItemViewStateToDomain(itemViewState: ItemViewState): Item {
         return with(itemViewState) {
-            Item(name, image, price, stock, category, oldPrice, productId)
+            Item(
+                name = name, image,
+                price = price,
+                stock = stock,
+                category = category,
+                oldPrice = oldPrice,
+                productId = productId,
+                wishListStatus = wishListStatus,
+                cartStatus = cartStatus,
+                quantity = quantity
+            )
         }
     }
 
-    fun mapDomainItemToViewState(item: Item): ItemViewState {
+    override fun mapDomainItemsToViewState(items: List<Item>): List<ItemViewState> {
+        return items.map {
+            mapDomainItemToViewState(it)
+        }
+    }
+
+    private fun mapDomainItemToViewState(item: Item): ItemViewState {
         return with(item) {
             ItemViewState(
                 name = name,
@@ -34,7 +50,10 @@ class ViewStateMapperImpl @Inject constructor() : ViewStateMapper {
                 price = price,
                 stock = stock,
                 oldPrice = oldPrice,
-                productId = productId
+                productId = productId,
+                wishListStatus = wishListStatus,
+                cartStatus = cartStatus,
+                quantity = quantity
 
             )
         }

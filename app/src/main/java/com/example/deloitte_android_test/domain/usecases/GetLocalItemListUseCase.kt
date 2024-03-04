@@ -6,8 +6,8 @@ import com.example.deloitte_android_test.utils.DataHandler
 import javax.inject.Inject
 
 
-class GetItemUseCase @Inject constructor(private val repo: ItemRepository) {
-    suspend operator fun invoke(id: String): DataHandler<Item> {
-        return repo.getItem(id)
+class GetLocalItemListUseCase @Inject constructor(private val repo: ItemRepository) {
+    suspend operator fun invoke(): DataHandler<List<Item>> {
+        return repo.getLocalItemListResult()
     }
 }

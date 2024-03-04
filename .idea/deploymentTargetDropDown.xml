@@ -2,10 +2,16 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="BasketContentPreview">
+        <State />
+      </entry>
       <entry key="DetailsContentButtonsPreview">
         <State />
       </entry>
       <entry key="ShowDetailsScreens">
+        <State />
+      </entry>
+      <entry key="WishListContentPreview">
         <State />
       </entry>
       <entry key="app">

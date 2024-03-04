@@ -10,7 +10,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 data class BottomNavigationItem(
     val label: String = "",
     val icon: ImageVector = Icons.Filled.Home,
-    val route: String = ""
+    val route: String = "",
+    var hasbadge: Boolean = false,
 ) {
 
     fun bottomNavigationItems(): List<BottomNavigationItem> {
@@ -23,13 +24,17 @@ data class BottomNavigationItem(
             BottomNavigationItem(
                 label = "WISHLIST",
                 icon = Icons.Filled.Favorite,
-                route = Destinations.WishList.route
+                route = Destinations.WishList.route,
+                hasbadge = true
             ),
             BottomNavigationItem(
                 label = "BASKET",
                 icon = Icons.Filled.ShoppingCart,
-                route = Destinations.Basket.route
+                route = Destinations.Basket.route,
+                hasbadge = true
             ),
         )
     }
+
+
 }

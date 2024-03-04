@@ -13,6 +13,8 @@ data class DbItem(
     var stock: Int? = null,
     var category: String? = null,
     var oldPrice: Double? = null,
-
-    )
+    var wishListStatus: Boolean = false,
+    var cartStatus: Boolean = false,
+    var quantity: Int = 1
+)
 
